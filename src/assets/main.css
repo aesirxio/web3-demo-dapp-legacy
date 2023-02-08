@@ -1,0 +1,65 @@
+/* ./src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply heading-font;
+    }
+
+    h1 {
+        @apply text-3xl;
+    }
+
+    h2 {
+        @apply text-2xl;
+    }
+
+    h3 {
+        @apply text-xl;
+    }
+
+    body {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 16px;
+        @apply text-blue;
+    }
+
+    .heading-font {
+        text-transform: uppercase;
+        @apply tracking-widest;
+    }
+
+    .badge {
+        @apply text-white;
+        @apply uppercase;
+        @apply bg-blue;
+        @apply rounded-full;
+        @apply py-1 px-2;
+        @apply inline-block;
+    }
+
+    button.disabled {
+        @apply opacity-30;
+    }
+
+    input, textarea {
+        @apply border-blue-900;
+        @apply border-2;
+    }
+}
+
+.swal2-title {
+    text-transform: uppercase !important;
+}
+
+.swal2-confirm {
+    @apply bg-blue !important;
+    background-image: none !important;
+}
