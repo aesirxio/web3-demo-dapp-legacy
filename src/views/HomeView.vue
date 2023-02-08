@@ -1,5 +1,6 @@
 <script>
 import ProductAdd from "../components/PIM/ProductAdd.vue";
+import Product from "../components/PIM/Product.vue";
 
 import Concordium from "../web3/concordium";
 import Swal from "sweetalert2";
@@ -7,6 +8,7 @@ import Swal from "sweetalert2";
 export default {
   components: {
     ProductAdd,
+    Product,
   },
   mounted() {
     this.concordium = new Concordium();
@@ -15,12 +17,15 @@ export default {
     return {
       account: "",
       concordium: null,
+      products: [],
     };
   },
   methods: {
     connect: async function () {
       try {
         this.account = await this.concordium.accountConnect();
+
+        this.productList();
       } catch (e) {
         Swal.fire({
           title: "No connection",
@@ -49,6 +54,22 @@ export default {
           },
         }
       );
+      this.productList();
+    },
+    async productList() {
+      const nonce = (
+        await this.axios.get(
+          "http://localhost/account/v1/" + this.account + "/nonce"
+        )
+      ).data.nonce;
+      const signedNonce = await this.concordium.signMessage(String(nonce));
+      const products = await this.axios.get(
+        "http://localhost/product/v1/" +
+          this.account +
+          "?signature=" +
+          signedNonce
+      );
+      this.products = products.data;
     },
   },
   computed: {
@@ -81,4 +102,22 @@ export default {
 
   <br />
   <ProductAdd v-if="account" v-on:add="productAdd" />
+
+  <br />
+
+  <h3>My products</h3>
+  <br />
+
+  <div class="grid grid-cols-2 gap-2">
+    <Product
+      v-for="p in products"
+      :key="p.token"
+      :sku="p.sku"
+      :name="p.name"
+      :description="p.description"
+      :block="p.block"
+      :token="p.token"
+    />
+  </div>
 </template>
+

@@ -12,6 +12,7 @@ export default class Concordium {
   jsonRpcClient = null;
   account = null;
   rawNFTModuleSchema = "//";
+  contractName = "";
   contractIndex = 0;
   contractSubindex = 0;
 
@@ -90,5 +91,12 @@ export default class Concordium {
       },
       this.rawNFTModuleSchema
     );
+  }
+
+  async signMessage(message) {
+    return toBuffer(
+      JSON.stringify(await this.client.signMessage(this.account, message)),
+      "utf-8"
+    ).toString("base64");
   }
 }
