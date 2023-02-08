@@ -34,6 +34,21 @@ export default {
     async productAdd(sku, name, description) {
       const token = await this.concordium.getNextNFT();
       const trx = await this.concordium.mintNFT(this.account, token);
+      await this.axios.post(
+        "http://localhost/product/v1",
+        JSON.stringify({
+          sku: sku,
+          name: name,
+          description: description,
+          block: trx,
+          token: token,
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
     },
   },
   computed: {
