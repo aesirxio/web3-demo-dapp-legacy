@@ -53,6 +53,10 @@
         @apply border-blue-900;
         @apply border-2;
     }
+
+    a {
+        @apply underline;
+    }
 }
 
 .swal2-title {
