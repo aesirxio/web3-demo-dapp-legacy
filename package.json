@@ -10,11 +10,13 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@concordium/browser-wallet-api-helpers": "^2.0.0",
+    "@concordium/web-sdk": "^3.1.0",
+    "@tailwindcss/forms": "^0.5.3",
     "pinia": "^2.0.28",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6",
-    "@concordium/browser-wallet-api-helpers": "^2.0.0",
-    "@concordium/web-sdk": "^3.1.0"
+    "vue-sweetalert2": "^5.0.5"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",

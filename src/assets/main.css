@@ -4,7 +4,6 @@
 @tailwind utilities;
 
 @layer base {
-
     h1,
     h2,
     h3,
@@ -36,4 +35,31 @@
         text-transform: uppercase;
         @apply tracking-widest;
     }
+
+    .badge {
+        @apply text-white;
+        @apply uppercase;
+        @apply bg-blue;
+        @apply rounded-full;
+        @apply py-1 px-2;
+        @apply inline-block;
+    }
+
+    button.disabled {
+        @apply opacity-30;
+    }
+
+    input, textarea {
+        @apply border-blue-900;
+        @apply border-2;
+    }
+}
+
+.swal2-title {
+    text-transform: uppercase !important;
+}
+
+.swal2-confirm {
+    @apply bg-blue !important;
+    background-image: none !important;
 }
